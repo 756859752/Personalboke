@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/aticlecontent.css"/>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/yg.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div id="" class="a_content">
+			<p class="biaoti"><a href="" target="catalogframe" yg-mod="title" >Git常用命令</a></p>
+			<pre class="context" yg-mod="content" >
+					内容
+			</pre>
+			<p class="biaoqian">发布于:<a href="" yg-mod="pushdate"></a> <span class="fenge">|</span>关于:<a href="" yg-mod="type">  </a> <span class="fenge">|</span>关键词:<a href="" yg-mod="keyword"> </a></p>
+		</div>
+		<div class="discuss_title">
+			<p>本篇文章共有<span>2</span>条评论!</p>
+			<h3>请拿起你的键盘，开始你的表演↓</h3>
+		</div>
+		<div class="discuss_say" id="discusssay">
+			<textarea name="" rows="" cols="" class="topicwin" id="topicwind" placeholder="请优秀的你发表看法"></textarea>
+				<button class="mybuton" onclick="dosubmit()">发表</button>
+		</div>
+		<div id="discusses">
+			<div class="discuss">
+				<div id="" class="users">
+					<img src="img/b.jpg" class="userhead" align="top"/>
+					<p class="username">张大葱</p>
+					<p class="saytime">2020/6/25</p>
+				</div>
+				<pre class="saycontext">    你写的这都什么狗屎玩意儿阿</pre>
+			</div>
+			<div class="discuss">
+				<div id="" class="users">
+					<img src="img/d.jpg" class="userhead" align="top"/>
+					<p class="username">Abcsturact</p>
+					<p class="saytime">2020/6/25</p>
+				</div>
+				<pre class="saycontext">楼上你说话注意点</pre>
+			</div>
+		</div>
+	</body>
+	<script>
+		
+		window.onload = function(){
+			var articleid= parent.PARMS.getParm("articleid");
+			var parms={"articleid":articleid};
+			debugger
+			$.post("article/articleDetails.do",parms,handler);
+		}
+		var handler=function(result){
+			var datas=result.data;
+			YG.setData(datas);
+			parent.reinitIframe();
+		}
+		var dosubmit=function(){
+			$("#topicwind").animate({height: '30px'},250).removeClass("topicwinfocus");
+			var sty=$("#topicwind").val();
+			if(sty.length==""||sty==null||sty.replace(/\s+/g,"").length==0){
+				alert("请先说些什么再发表哦亲！");
+				return;
+			}
+			$("#topicwind").val("");
+			var str='<div class="discuss newdiscuss" id="pss" ><div class="users" ><img src="img/b.jpg" class="userhead" align="top"/><p class="username">张大葱</p><p class="saytime">2020/6/25</p></div><pre class="saycontext">'+sty+'</pre></div>';
+			$("#discusses").prepend(str);
+			var count=sty.length/47
+			count=Math.floor(count);
+			var heights=54+(count+1)*21;
+			heights+="px";
+			console.log()
+			$("#pss").animate({height: heights},250,function(){
+				parent.reinitIframe();
+			})
+		}
+		
+		$("#topicwind").focus(function(){
+			$("#topicwind").addClass("topicwinfocus");
+		})
+		$("#topicwind").blur(function(){
+				setTimeout(function(){
+					$("#topicwind").animate({height: '30px'},250).removeClass("topicwinfocus");
+					},1000);
+		})
+	</script>
+</html>

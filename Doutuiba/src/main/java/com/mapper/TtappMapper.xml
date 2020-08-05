@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TtappMapper">
+	<insert id="insertTtapp" parameterType="Ttapp" >
+		insert into Ttapp(ttappid,appid,image,title,wenan,suport,secret,pushdate,author) 
+		values(#{ttappid},#{appid},#{image},#{title},#{wenan},#{suport},#{secret},#{pushdate},#{author})
+	</insert>
+	<delete id="deleteTtapp" parameterType="java.lang.String">
+		delete Ttapp where Ttappid=#{String}
+	</delete>
+	<update id="updateTtapp" parameterType="Ttapp" >
+		update Ttapp set appid=#{appid},image=#{image},title=#{title},wenan=#{wenan},suport=#{suport},secret=#{secret},pushdate=#{pushdate},author=#{author}
+		where ttappid=#{ttappid}
+	</update>
+	<select id="selectTtappById" parameterType="java.lang.String" resultType="Ttapp">
+		select * from Ttapp where  Ttappid=#{String}
+	</select>
+	<select id="selectTtappByCondition" parameterType="hashmap" resultType="Ttapp">
+   			select ttappid,appid,image,title,wenan,suport,pushdate,author from ttapp
+   			<!--  <trim prefix="where" prefixOverrides="and|or">
+   				<if test="keyword!='' and keyword!=null">
+   					  <bind name="condition" value="'%'+keyword+'%'"/>
+   					  and keyword like #{condition}
+   				</if>
+   				<if test="type!='' and type!=null">
+   					and type=#{type}
+   				</if>
+   				<if test="mingrade!='' and mingrade!=null">
+	   				<![CDATA[
+	   					and grade>=#{mingrade}
+	  			 	]]>
+   				</if>
+   			</trim>
+   			-->
+	   					 limit #{catstart},#{pagesize}
+   		</select>
+   		
+   		<select id="selectTtappCountByCondition" parameterType="hashmap" resultType="Integer">
+   			select count(*) from Ttapp
+   			<trim prefix="where" prefixOverrides="and|or">
+   				<if test="keyword!='' and keyword!=null">
+   					  <bind name="condition" value="'%'+keyword+'%'"/>
+   					  and keyword like #{condition}
+   				</if>
+   				<if test="type!='' and type!=null">
+   					and type=#{type}
+   				</if>
+   				<if test="mingrade!='' and mingrade!=null">
+	   				<![CDATA[
+	   					and grade>=#{mingrade}
+	  			 	]]>
+   				</if>
+   			</trim>
+   		</select>
+
+</mapper>

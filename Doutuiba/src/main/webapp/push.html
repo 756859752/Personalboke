@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/push.css"/>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/yg.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div class="fields">
+			<ul class="fields_ul">
+				<li><label>标题</label><input class="iptone" yg-mod="title"></li>
+				<li><label>摘要</label><textarea name="" rows="" cols="" class="iptone zhaiyao" yg-mod="zhaiyao"></textarea></li>
+				<li><label>作者</label><input  class="ipttwo" yg-mod="author"><label>关键词</label><input class="ipttwo" yg-mod="keyword"><label>类型</label>
+					<select name="" class="myselect" yg-mod="type">
+						<option value="">服务器</option>
+						<option value="">数据库</option>
+						<option value="">java</option>
+						<option value="">分布式</option>
+						<option value="">需求与开发者</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+		<div class="context">
+			<div id="" class="context_head">
+				
+			</div>
+			<textarea name="" rows="" cols="" class="context_center" yg-mod="content"></textarea>
+		</div>
+		<div class="buttons">
+			<button class="btnone" onclick="mySubmit()">暂存</button>
+			<button class="btnone">发表</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload = parent.reinitIframe;
+		var mySubmit=function(){
+			parent.lockUI();
+			var parms=YG.getData();
+			$.post("article/articlePush.do",parms,handler);
+		}
+		var handler=function(result){
+			parent.unlockUI();
+			if("true"==result){
+				alert("发布成功！");
+			}
+		}
+//			var data=[
+//				{name:"张三",sex:"女"},
+//		 		{name:"李四",sex:"男"},
+//		 		{name:"王五",sex:"女"}
+//			]
+	</script>
+</html>
+

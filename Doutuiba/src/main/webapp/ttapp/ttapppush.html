@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../css/ttapppush.css"/>
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/yg.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div class="fields" >
+			<ul class="fields_ul">
+				<li><label>标题</label><input class="iptone" yg-mod="title" yg-valid="notnull"></li>
+				<li><label>文案</label><textarea name="" rows="" cols="" class="iptone zhaiyao" yg-mod="wenan"  yg-valid="notnull"></textarea></li>
+				<li><label>appid</label><input class="iptone" yg-mod="appid"  yg-valid="notnull"></li>
+				<li><label>secret</label><input class="iptone" yg-mod="secret"  yg-valid="notnull"></li>
+				<li><label>上传者</label><input  class="ipttwo" yg-mod="author"  yg-valid="notnull"><label>支持</label><input class="ipttwo" yg-mod="suport"  yg-valid="notnull"><label>类型</label>
+					<select name="" class="myselect" yg-mod="type">
+						<option value="0">测一测</option>
+						<option value="1">其他</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+		<!--<div class="context">
+			<div id="" class="context_head">
+				
+			</div>
+			<textarea name="" rows="" cols="" class="context_center" yg-mod="content"></textarea>
+		</div>  -->
+		<div class="buttons">
+			<button class="btnone" onclick="">暂存</button>
+			<button class="btnone" onclick="mySubmit()">发布</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload = parent.reinitIframe;
+		//parent.isLogin();
+		var mySubmit=function(){
+				var parms=YG.getData();
+				if(parms!=null){
+					parent.lockUI();
+					$.post("addTtapp.do",parms,handler);
+				}
+		}
+		var handler=function(result){
+			if("true"==result){
+				alert("发布成功！");
+			}else{
+				alert("发布失败！");
+			}
+			parent.unlockUI();
+			parent.locat("html/success.html");
+		}
+//			var data=[
+//				{name:"张三",sex:"女"},
+//		 		{name:"李四",sex:"男"},
+//		 		{name:"王五",sex:"女"}
+//			]
+	</script>
+</html>
+

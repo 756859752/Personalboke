@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="css/article.css"/>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/yg.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div id="cata_log">
+		     <div class="catalog" yg-repeat="catalogs" >
+						<p class="biaoti"><a href="javascript:;" onclick="artCatalog.articleDetail(#{articleid})" target="catalogframe">#{title}</a></p>
+						<p class="zhaiyao">#{zhaiyao}</p>
+						<p class="biaoqian">发布于:<a href="">#{pushdate}</a><span class="fenge">|</span> 关于:<a href=""> #{type} </a><span class="fenge">|</span> 关键词:<a href=""> #{keyword} </a></p>
+			</div>
+		</div>
+		<div class="pagecontroler">
+				<p>
+					<a href="javascript:;" onclick="Page.perxPage()" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+					当前页:<span id="currenpage" >1</span>
+					<a href="javascript:;" onclick="Page.nextPage()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+				<p>
+				<p>共<span id="countpage">3</span>页</p>
+		</div>
+	</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var parms={};
+		parms["catstart"]=0;
+		parms["pagesize"]=2;
+		parent.lockUI();
+		$.post("article/articleList.do",parms,artCatalog.handler);
+	}
+	var loadPage=function(catstart,pagesize,parms){
+		artCatalog.loadPage(catstart,pagesize,parms);
+	}
+	
+	/*页面加载*/
+	var artCatalog={
+		condition:{},
+		flag:"",
+		loadPage:function(catstart,pagesize,parms){
+			parms.catstart=catstart;
+			parms.pagesize=pagesize;
+			$.post("article/articleList.do",parms,this.handler);
+		},
+		handler:function(result){
+			$("#cata_log").children().not("[yg-repeat]").remove();
+			var datas=result.data;
+			var counts=result.count;
+			YG.setRepeat("catalogs",datas);	
+			Page.setCountPage(counts),
+			parent.reinitIframe();
+			this.flag="flagsssssssss";
+			parent.unlockUI();
+		},
+		articleDetail:function(articleid){
+			parent.PARMS.saveParm("articleid",articleid);
+			location.href="articlecontent.html";
+		},
+		test:function(){
+			console.log(this.flag);
+		}
+	}	
+		/*分页控制*/
+		var Page={
+			pagesize:2,
+			currenpage:1,
+			countpage:1,
+			count:0,
+			nextPage:function(){
+				if(this.currenpage==this.countpage){
+					return ;
+				}
+				this.currenpage++;
+				var catstart=(this.currenpage-1)*this.pagesize;
+				
+				$("#currenpage").html(this.currenpage);
+				//子页面分页查询
+				artCatalog.loadPage(catstart,this.pagesize,{});
+			},
+			perxPage:function(){
+				if(this.currenpage==1){
+					return ;
+				}
+				this.currenpage--;
+				var catstart=(this.currenpage-1)*this.pagesize;
+				$("#currenpage").html(this.currenpage);
+				//子页面分页查询
+				artCatalog.loadPage(catstart,this.pagesize,{});
+			},
+			setCountPage(counts){
+				this.count=counts
+				var num=counts/this.pagesize;
+				num=Math.ceil(num);//总数
+				this.countpage=num;//页数
+				$("#countpage").html(num);
+			}
+			
+		}
+
+</script>
+</html>

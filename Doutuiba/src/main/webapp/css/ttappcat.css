@@ -1,0 +1,63 @@
+*{margin:0px; padding:0px}
+a{text-decoration: none; color: #666;}
+li{list-style: none;}
+img{border: none; vertical-align: bottom;}
+.catalog{
+	border-bottom: #ededed solid 1px;
+	margin-bottom: 44px;
+	padding-bottom: 10px;
+	position: relative;
+}
+.biaoti{
+	margin-bottom: 20px;
+}
+.biaoti>a{
+	font-size:22px;
+	color: #21759b;
+}
+.wenan{
+	font-size:14px;
+	color: #444444;
+	margin-bottom: 20px;
+}
+.biaoqian{
+	color: #757575;
+}
+.biaoqian a{
+	text-decoration:  underline;
+}
+.pagecontoler{
+	position:absolute;
+bottom:0;
+left:0
+}
+.pagecontroler>p{
+	width: 780px;
+	text-align: center;
+}
+.pagecontroler>p>span{
+	font-size: 14px;
+	margin: 0px 10px;
+}
+.fenge{
+	margin:0px 20px;
+}
+.float_btn{
+	position:fixed;
+	right: 0px;
+	top:10px;
+}
+.btnone{
+	
+	height: 33px;
+	padding: 0px 10px;
+	border-radius: 3px;
+	border:#757575 solid 1px ;
+	background-color:  cornflowerblue;
+	color: white;
+	cursor: pointer;
+	position: relative;
+}
+.btnone:active{
+    top: 2px; 
+}

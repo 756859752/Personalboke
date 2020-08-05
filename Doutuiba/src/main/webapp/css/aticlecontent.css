@@ -1,0 +1,139 @@
+*{margin:0px; padding:0px}
+a{text-decoration: none; color: #666;}
+li{list-style: none;}
+img{border: none; vertical-align: bottom;}
+input,button,select,textarea{ outline:none;}
+pre{
+	font-family: "微软雅黑";
+	white-space: pre-wrap; /*css-3*/
+
+	white-space: -moz-pre-wrap; /*Mozilla,since1999*/
+	
+	white-space: -pre-wrap; /*Opera4-6*/
+	
+	white-space: -o-pre-wrap; /*Opera7*/
+	
+	word-wrap: break-word; /*InternetExplorer5.5+*/
+}
+.a_content{
+	border-bottom: #ededed solid 1px;
+	margin-bottom: 44px;
+	padding-bottom: 10px;
+}
+.biaoti{
+	margin-bottom: 20px;
+}
+.biaoti>a{
+	font-size:22px;
+	color: #21759b;
+}
+.context{
+	color: #444444;
+	font-size: 16px;
+	margin-bottom: 30px;
+	
+}
+.biaoqian{
+	color: #757575;
+}
+.biaoqian a{
+	text-decoration:  underline;
+}
+.discuss_title{
+	color: #444444;
+	margin-bottom: 20px;
+}
+.discuss_title>p{
+	margin-bottom: 15px;
+}
+
+.discuss_say{
+	margin-bottom: 10px;
+	border-bottom: #ededed solid 1px;
+	padding-bottom: 10px;
+	overflow: auto;
+}
+.topicwin{
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 755px;
+	height: 20px;
+	resize: none;
+	color: #444444;
+	font-family: "微软雅黑";
+	border-radius: 3px;
+	border:darkgrey solid 1px;
+	padding: 5px;
+	background: rgba(248,249,251,0.8);
+}
+.topicwinfocus{
+	box-shadow: 0 0 6px 0 #5094d5;
+	animation: bigwin 0.25s ease-in-out 0s 1 normal forwards;
+}
+
+@-webkit-keyframes bigwin{
+	from{
+		height: 30px;
+	}
+	to{
+		height: 60px;
+	}
+}
+@-webkit-keyframes bigdisscuss{
+	from{
+		height: 0px;
+	}
+	to{
+		height: 30px;
+	}
+}
+.mybuton{
+	height: 33px;
+	padding: 0px 10px;
+	border-radius: 3px;
+	border:#757575 solid 1px ;
+	background-color:  cornflowerblue;
+	color: white;
+	cursor: pointer;
+	position: relative;
+	float: right;
+	margin-right: 10px;
+}
+.mybuton:active{
+    top: 2px; 
+}
+
+.discuss{
+	border-bottom: #ededed solid 1px;
+	margin-bottom: 5px;
+	padding: 10px;
+}
+.newdiscuss{
+	height: 0px;
+	/*animation:bigdisscuss 0.25s ease-in-out 0s 1 normal forwards;*/
+}
+.users{
+	margin-bottom: 10px;
+}
+.username{
+	color: #444444;
+}
+.saytime{
+	color: darkgrey;
+	margin-top: 4px;
+	font-size: 14px;
+}
+.userhead{
+	width: 44px;
+	height: 44px;
+	border-radius: 100%;
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+.saycontext{
+	color: #444444;
+}
+.fenge{
+	margin:0px 20px;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../css/branchapppush.css"/>
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/yg.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div class="fields">
+			<h3 style="background-color: gray; margin-bottom:10px; text-align: center;" >基本信息</h3>
+			<ul class="fields_ul" style="margin-bottom: 30px;">
+				<li><label>标题</label><input class="iptone" yg-mod="title" ></li>
+				<li><label>文案</label><textarea name="" rows="" cols="" class="iptone zhaiyao" yg-mod="wenan"  ></textarea></li>
+				<li><label>appid</label><input class="iptone" yg-mod="appid"   ></li>
+				<li><label>secret</label><input class="iptone" yg-mod="secret"  ></li>
+				<li><label>上传者</label><input  class="ipttwo" yg-mod="author"  ><label>支持</label><input class="ipttwo" yg-mod="suport"  ><label>类型</label>
+					<select name="" class="myselect" yg-mod="type">
+						<option value="0">测一测</option>
+						<option value="1">其他</option>
+					</select>
+				</li>
+			</ul>
+			<h3 style="background-color: gray; margin-bottom:10px;text-align: center; margin-top: 20px;">题目</h3>
+					<div  id="questions">
+						<div class="question" bitem="0">
+							<p><span>题目1.</span><input  class="iptone"  yg-mod="question[0].title"></p>
+							<p><span>答案A</span><input  class="iptone"  yg-mod="question[0].keya"></p>
+							<p><span>答案B</span><input  class="iptone" yg-mod="question[0].keyb"></p>
+							<p><span>答案C</span><input  class="iptone" yg-mod="question[0].keyc" ></p>
+							<p><span>答案D</span><input  class="iptone" yg-mod="question[0].keyd"></p>
+							<p><a href="javascript:Question.deletequestion(0)" style="color:blue;" class="">删除</a></p>
+						</div>
+					</div>
+					<div><a href="javascript:Question.addquestion()" style="color:blue;" class="">增加</a></div>
+			<h3 style="background-color: gray; margin-bottom:10px; text-align: center;margin-top: 20px;">背景图片</h3>
+					<div class="picture">
+						<span style="margin-right: 10px ">首页:</span>
+  						 <input type="file" class="file" accept="image/gif, image/jpeg, image/png,image/jpg" id="background1_file" onchange="changePicture('background1')" >
+						  <img id="background1_image" src="../img/b.jpg" class="div_model_img"/>
+					</div>
+					<div class="picture">
+						<span style="margin-right: 10px ">问答:</span>
+  						 <input type="file" class="file" accept="image/gif, image/jpeg, image/png,image/jpg" id="background2_file" onchange="changePicture('background2')">
+						  <img id="background2_image" src="../img/b.jpg" class="div_model_img"/>
+					</div>
+			<h3 style="background-color: gray; margin-bottom:10px; text-align: center;margin-top: 20px;">结果图片</h3>
+					<div id="results">
+						<div class="picture" ritem="0" >
+							<span style="margin-right: 10px ">结果：</span>
+	  						 <input type="file" class="file" accept="image/gif, image/jpeg, image/png,image/jpg" id="result0_file" onchange="changePicture('result0')">
+							  <img id="result0_image" src="../img/b.jpg" class="div_model_img"/>
+							  <a href="javascript:Result.deleteresult(0)"  style="color:blue;">删除</a>
+						</div>
+					</div>
+					<a  href="javascript:Result.addresult()"  style="color:blue;">新增</a>
+					
+		</div>
+		<!--<div class="context">
+			<div id="" class="context_head">
+				
+			</div>
+			<textarea name="" rows="" cols="" class="context_center" yg-mod="content"></textarea>
+		</div>  -->
+		<div class="buttons">
+			<button class="btnone" onclick="">暂存</button>
+			<button class="btnone" onclick="mySubmit()">发布</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload = parent.reinitIframe;
+		var loadPage = function(){
+			//parent.isLogin();
+			var appid= parent.PARMS.getParm("appid");
+			var secret=parent.PARMS.getParm("secret");
+			
+		}
+		
+	/*	var mySubmit=function(){
+				parent.lockUI();
+				var parms=YG.getData();
+				//先提交基础信息表单
+				debugger
+				$.post("addBranchappBaseForm.do",parms,pictureSubmitHandler);
+		}*/
+		
+		var mySubmit=function(){
+				parent.lockUI();
+				var background1=$("#background1_file").get(0).files[0];
+				var background2=$("#background2_file").get(0).files[0];
+				
+				if(background1==undefined||background2==undefined){
+					alert("必须添加两张背景图片！");
+					parent.unlockUI();
+					return;
+				}
+				debugger
+				//创建表单
+				var formData = new FormData();
+				var flag=false;
+				$("[ritem]").children("input").each(function(){
+					var file=$(this).get(0).files[0];
+					if(file==undefined){
+						flag=true;
+						return false;
+					}
+					formData.append("images", file);
+				})
+				if(flag){
+					alert("添加了的结果图片必须选定文件夹哦！");
+					parent.unlockUI();
+					return;
+				}
+				var parms=YG.getData();
+				 formData.append("ttapp",parms)
+				 for(i in parms){
+					formData.append(i,parms[i])
+				 }
+				 formData.append("background1", background1);   
+				 formData.append("background2", background2);
+				 $.ajax({
+			         url: "addBranchapp.do",
+			         type: "POST",
+			         data: formData,
+			         /**
+			         *必须false才会自动加上正确的Content-Type
+			         */
+			         contentType: false,
+			         /**
+			         * 必须false才会避开jQuery对 formdata 的默认处理
+			         * XMLHttpRequest会对 formdata 进行正确的处理
+			         */
+			         processData: false,
+			         success: function (data) {
+			             if (data == "true") {
+			                 alert("上传成功！");
+			                
+			                 parent.locat("html/success.html");
+			             }
+			             if (data =="error") {
+			                 alert("上传失败");
+			             }
+			             
+			             parent.unlockUI();
+			         },
+			         error: function () {
+			             alert("上传失败！");
+			             parent.unlockUI();
+			         }
+			     });
+		}
+		
+		/*题目管理器*/
+		var Question={
+			item:1,
+			conunt:1,
+			addquestion:function(){
+				if(this.conunt==3){
+					alert("目前只支持添加四道题目哦，亲");
+					return;
+				}
+				var str='<div class="question" bitem="'+this.item+'">';
+				str+='<p><span>题目</span><input  class="iptone"  yg-mod="question['+this.item+'].title"></p>'
+				str+='<p><span>答案A</span><input  class="iptone"  yg-mod="question['+this.item+'].keya"></p>'	
+				str+='<p><span>答案B</span><input  class="iptone" yg-mod="question['+this.item+'].keyb"></p>'
+				str+='<p><span>答案C</span><input  class="iptone" yg-mod="question['+this.item+'].keyc" ></p>'
+				str+='<p><span>答案D</span><input  class="iptone" yg-mod="question['+this.item+'].keyd"></p>'
+				str+='<p><a href="javascript:Question.deletequestion('+this.item+')"  style="color:blue;" class="">删除</a></p>'
+				str+='</div>'
+				$("#questions").append(str);
+				this.item++;
+				this.count++;
+				parent.reinitIframe();
+			},
+			deletequestion:function(bitem){
+				if(confirm("确定要删除当前题目嘛？")){
+					$('[bitem="'+bitem+'"]').remove(); 
+					this.conunt--;
+					parent.reinitIframe();
+				}
+			}
+		}
+		
+		/*图片更换*/
+		var changePicture=function(id){
+			var file=$("#"+id+"_file").get(0).files[0]
+			 var reader = new FileReader();
+           	 reader.onload = function (event) {
+                var txt = event.target.result;
+                $("#"+id+"_image").attr('src', txt);//将图片base64字符串赋值给img的src
+                //console.log(txt)//base64
+            };
+            reader.readAsDataURL(file);
+            debugger
+		}
+		
+		/*结果图片管理器*/
+		var Result={
+			item:1,
+			count:1,
+			addresult:function(){
+				var str='<div class="picture" ritem="'+this.item+'" >';
+				str+='<span style="margin-right: 10px ">结果：</span>';
+				str+='<input type="file" class="file" accept="image/gif, image/jpeg, image/png,image/jpg" id="result'+this.item+'_file"  onchange="changePicture(\'result'+this.item+'\')" >';
+				str+='<img id="result'+this.item+'_image" src="../img/b.jpg" class="div_model_img"/>';
+				str+='<a href="javascript:Result.deleteresult('+this.item+')"  style="color:blue;">删除</a> '
+				str+='</div>';
+				$("#results").append(str);
+				this.item++;
+				this.count++;
+				parent.reinitIframe();
+			},
+			deleteresult:function(ritem){
+				if(confirm("确定要删除当前结果嘛？")){
+					$('[ritem="'+ritem+'"]').remove(); 
+					this.conunt--;
+					parent.reinitIframe();
+				}
+			}
+		}
+		
+	</script>
+</html>
+

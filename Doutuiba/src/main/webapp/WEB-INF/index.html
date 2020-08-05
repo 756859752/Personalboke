@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<body>
+		<div id="" class="mainpaper"> 
+			<div id="" class="header biaozhun">
+				<h2 class="title">杨保才的个人博客</h2>
+				<p class="tab">杨保才个人博客是一个关注java技术的个人博客，提供一个互联网从业者的学习成果和工作经验总结。</p>
+				<div id="" class="nav">
+					<ul>
+						<li><a href="">首页</a></li>
+						<li><a href="">服务器</a></li>
+						<li><a href="">java语言</a></li>
+						<li><a href="">数据库</a></li>
+						<li><a href="">分布式</a></li>
+						<li><a href="">需求与开发者</a></li>
+						<li><a href="push.html" target="catalogframe">发表</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="context biaozhun">
+				<div class="context_left">
+					<iframe id="urlIframe" name="catalogframe" src="article.html" width="780px" height="" frameborder="0" scrolling="no" seamless="seamless"></iframe>
+				</div>
+				<div id="" class="context_right">
+					<div id="" class="search">
+						<div id="search_input">
+							<input class="myinput"  placeholder="请输入关键词">
+							<button class="mybuton">搜索</button>
+						</div>
+					</div>
+					<div id="" class="hots">
+						<h2 class="hots_title">热门</h2>
+						<ul  class="hots_content">
+							<li><a href="">[0] Lara博客系统v1.0版本发布</a><span>2545人访问过</span></li>
+							<li><a href="">[1] git时光穿梭机-版本回退</a><span>1956人访问过</span></li>
+							<li><a href="">[2] Linux输入输出重定向与管道</a><span>1866人访问过</span></li>
+							<li><a href="">[3] Lara系统安装</a><span>1250人访问过</span></li>
+							<li><a href="">[4] Git常用命令</a><span>899人访问过</span></li>
+							<li><a href="">[5] Apache压力测试参数</a><span>753人访问过</span></li>
+						</ul>
+					</div>
+					<div id="" class="news">
+						<h2 class="news_title">最新</h2>
+						<ul class="news_content">
+							<li><a href="">[0] Git常用命令</a><span>发布时间:2020/06/25</span></li>
+							<li><a href="">[1] Apache压力测试参数</a><span>发布时间:2020/6/4</span></li>
+							<li><a href="">[2] PHP中的命名空间</a><span>发布时间:2020/5/11</span></li>
+							<li><a href="">[4] Linux输入输出重定向与管道</a><span>发布时间:2020/4/18</span></li>
+							<li><a href="">[5] linux scp命令</a><span>发布时间:2020/9/9</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<p class="bottom_title">到底啦</p>
+				<p class="mybuton_text">小小个人网站，请大佬勿要恶意攻击，如需练手，请实现联系站长</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/*解决iframe高度不够的问题*/
+	 window.onload = reinitIframe;
+		function reinitIframe() {
+		var iframe = document.getElementById("urlIframe");
+		 try
+		{
+		var bHeight = iframe.contentWindow.document.body.scrollHeight;
+		/*
+		var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+		var height = Math.max(bHeight, dHeight);
+		iframe.height = height; */
+		iframe.height = bHeight;
+		}
+		catch (ex) { }
+		}
+		function aticlecontent(url){
+			console.log(url);
+		return "personbok/aticlecontent?aid="+url;
+		}
+		var PARMS ={
+			parm:[],
+			saveparm:function(keys,values){
+				var p={fkey:"",value:""}
+				p.fkey=keys;
+				p.value=values;
+				this.parm.push(p)
+			},
+			getparm:function(keys){
+				var value="";
+				var flag;
+				var arr=this.parm;
+				for(i in arr){
+					var	p=this.parm[i]
+					if(p.fkey==keys){
+						value=p.value;
+						flag=i;
+					}
+				}
+				arr.splice(flag,1);
+				return value;
+		},
+		}
+</script>
+</html>

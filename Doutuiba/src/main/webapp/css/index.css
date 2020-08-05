@@ -1,0 +1,194 @@
+*{margin:0px; padding:0px}
+a{text-decoration: none; color: #666;}
+li{list-style: none;}
+img{border: none; vertical-align: bottom;}
+body{
+		 	background: gainsboro;
+		 }
+.mainpaper{
+	border-radius: 5px;
+	background-color: #fff;
+	margin: 70px auto;
+	padding: 30px 40px;
+	width: 1200px;
+	box-shadow:5px 5px 8px #888888;
+	overflow: auto;
+}
+.biaozhun{
+	color: #757575;
+}
+.header{
+	height: 200px;
+}
+.title{
+	color: #515151;
+}
+.tab{
+	margin-top: 5px;
+	font-size: 14px;
+	color: #757575;
+}
+.nav{
+	width: 100%;
+	margin-top: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-top: 1px solid #ededed;;
+	border-bottom: 1px solid #ededed;;
+	overflow: auto;
+}
+.nav>ul>li{
+	float: left;
+	margin: 0px 20px;
+	font-size: 16px;
+}
+.nav>ul>li>a:hover{
+	color: gainsboro;
+	
+}
+.context{
+	overflow: auto;
+}
+.context_left{
+	float:left;
+	width: 780px;
+	overflow: auto;
+}
+.context_right{
+	float: right;
+	width: 320px;
+}
+.context_right>div{
+	margin-bottom: 80px;
+}
+.search{
+	height: 50px;
+}
+.search_input{
+	
+}
+.myinput{
+	width: 200px;
+	height: 30px;
+	border-radius: 3px;
+	border:#757575 solid 1px;
+	padding-left: 5px;
+}
+.mybuton{
+	height: 33px;
+	padding: 0px 10px;
+	border-radius: 3px;
+	border:#757575 solid 1px ;
+	background-color:  cornflowerblue;
+	color: white;
+	cursor: pointer;
+	position: relative;
+}
+.mybuton:active{
+    top: 2px; 
+}
+
+.hots_title{
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+.hots_content{
+	font-size:14px;
+}
+.hots_content>li{
+	margin: 5px 0px;
+}
+.hots_content>li>a:hover{
+	text-decoration: underline;
+}
+.hots_content>li>span{
+	margin-left: 10px;
+	color: crimson;
+	font-size: 12px;
+}
+
+
+.news_title{
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+.news_content{
+	font-size:14px;
+}
+.news_content>li{
+		margin: 5px 0px;
+}
+.news_content>li>a:hover{
+	text-decoration: underline;
+}
+.news_content>li>span{
+	margin-left: 10px;
+	color: crimson;
+	font-size: 12px;
+}
+.bottom{
+	border-top: 1px solid #ededed;
+	text-align: center;
+	margin-top: 20px;
+}
+.bottom_title{
+	margin: 10px 0px;
+}
+.mybuton_text{
+	color: #757575;
+	font-size: 12px;
+}
+
+
+/* 模态框样式 */
+.loading {	
+display:none;
+ position: fixed;
+ top: 0;
+ bottom: 0;
+ right: 0;
+ left: 0;
+ background-color: black;
+ opacity: 0.4;
+ z-index: 1000;
+}
+
+/* 动图样式 */
+.loading .gif {
+ width: 400px;
+ height:400px;
+ background: url('../img/timg.gif');
+ position: fixed;
+ left: 50%;
+ top: 50%;
+  margin-top:-200px;
+  margin-left:-200px;
+ z-index: 1001;
+}
+
+/*登录模态框*/
+.loginblock{	
+ display:none;
+ position: fixed;
+ top: 0;
+ bottom: 0;
+ right: 0;
+ left: 0;
+ z-index: 1000;
+ background:transparent;
+ background-color: rgba(0,0,0,0.4);
+}
+/*登录面板样式*/
+.login{
+	width: 400px;
+ 	height:400px;
+ 	position: fixed;
+ 	background-color:white;
+ 	left: 50%;
+ 	top: 50%;
+ 	margin-top:-200px;
+    margin-left:-200px;
+    z-index: 100;
+   	border-radius: 6px;
+   	box-shadow:0px 0px 10px 0 rgba(0,0,0,0.8);
+}

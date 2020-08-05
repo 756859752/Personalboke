@@ -1,0 +1,97 @@
+*{margin:0px; padding:0px}
+a{text-decoration: none; color: #666;}
+li{list-style: none;}
+img{border: none; vertical-align: bottom;}
+input,button,select,textarea{ outline:none;}
+
+.fields{
+	
+}
+.iptone{
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 680px;
+	height: 25px;
+	resize: none;
+	color: #444444;
+	font-family: "微软雅黑";
+	border-radius: 3px;
+	border:darkgrey solid 1px;
+	padding: 5px;
+	background: rgba(248,249,251,0.8);
+}
+.ipttwo{
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 180px;
+	height: 25px;
+	resize: none;
+	color: #444444;
+	font-family: "微软雅黑";
+	border-radius: 3px;
+	border:darkgrey solid 1px;
+	padding: 5px;
+	background: rgba(248,249,251,0.8);
+}
+
+.zhaiyao{
+	height: 60px;
+	border-radius: 0px;
+	vertical-align:top;
+}
+
+.fields_ul>li{
+	margin:30px 0px;	
+}
+.fields_ul>li>input{
+	margin-right: 20px;
+}
+.iptone:focus{
+	box-shadow: 0 0 6px 0 #5094d5;
+}
+.ipttwo:focus{
+	box-shadow: 0 0 6px 0 #5094d5;
+}
+.context_head{
+	border: ;
+	width: 745px;
+	height: 20px;
+	background-color: #aaa;
+	border: darkgrey solid 1px;
+	border-bottom: none;
+}
+.context_center{
+	width: 735px;
+	height: 500px;
+	padding: 5px;
+	border: darkgrey solid 1px;
+	border-top: none;
+	resize: none;
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+.buttons{
+	width: 735;
+	margin-bottom: 40px;
+	text-align: center;
+}
+.btnone{
+	height: 33px;
+	padding: 0px 10px;
+	border-radius: 3px;
+	border:#757575 solid 1px ;
+	background-color:  cornflowerblue;
+	color: white;
+	cursor: pointer;
+	position: relative;
+}
+.btnone:active{
+    top: 2px; 
+}
+.myselect{
+	width: 120px;
+	height: 35px;
+}
+.myselect option:hover{
+	background-color: darkgray;
+}
